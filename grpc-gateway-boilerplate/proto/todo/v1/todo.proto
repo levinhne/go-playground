@@ -1,0 +1,28 @@
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/levinhne/grpc-gateway-boilerplate/todo/v1;todopb_v1";
+
+package todo.v1;
+
+service TodoService {
+    rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/todos"
+            body: "*"
+
+        };
+    }
+}
+
+message CreateTodoRequest {
+
+}
+
+message CreateTodoResponse {
+
+}

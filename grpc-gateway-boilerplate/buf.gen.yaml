@@ -1,0 +1,27 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/levinhne/grpc-gateway-boilerplate
+    except:
+      - buf.build/googleapis/googleapis
+      - buf.build/grpc-ecosystem/grpc-gateway
+      - buf.build/bufbuild/protovalidate
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: proto
+    opt: paths=source_relative
+  - plugin: buf.build/grpc/go
+    out: proto
+    opt: paths=source_relative,require_unimplemented_servers=false
+  - plugin: buf.build/grpc-ecosystem/gateway
+    out: proto
+    opt: paths=source_relative
+  - plugin: buf.build/bufbuild/validate-go
+    out: proto
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/openapiv2
+    out: third_party/OpenAPI
+    opt: enums_as_ints=true,allow_merge=true
+
