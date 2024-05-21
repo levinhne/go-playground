@@ -8,14 +8,13 @@ import (
 	"golang.org/x/net/context"
 )
 
-var _ ports.TodoRepository = (*TodoRepository)(nil)
 var TodoRepositorySet = wire.NewSet(NewTodoRepository)
 
 type TodoRepository struct {
 	db *bun.DB
 }
 
-func NewTodoRepository(db *bun.DB) TodoRepository {
+func NewTodoRepository(db *bun.DB) ports.TodoRepository {
 	return TodoRepository{
 		db: db,
 	}

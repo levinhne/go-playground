@@ -3,6 +3,7 @@ package application
 import (
 	"context"
 
+	"github.com/google/wire"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/commands"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/ports"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/queries"
@@ -10,6 +11,7 @@ import (
 )
 
 var _ ServiceApplication = (*Service)(nil)
+var ServiceApplicationSet = wire.NewSet(NewServiceApplication)
 
 type ServiceApplication interface {
 	GetTodo(ctx context.Context, query queries.GetTodo) (*domain.Todo, error)
@@ -31,7 +33,7 @@ type Commands struct {
 
 func NewServiceApplication(
 	todoRepository ports.TodoRepository,
-) Service {
+) ServiceApplication {
 	return Service{
 		commands: Commands{
 			CreateTodo: commands.NewCreateTodoHandler(todoRepository),

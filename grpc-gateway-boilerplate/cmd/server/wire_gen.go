@@ -10,15 +10,26 @@ import (
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/adapters"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/handlers"
+	"github.com/levinhne/grpc-gateway-boilerplate/proto/todo/v1"
 	"github.com/uptrace/bun"
 	"go.uber.org/zap"
+	"google.golang.org/grpc"
 )
 
 // Injectors from wire.go:
 
-func Initialize(db *bun.DB, logger *zap.Logger) handlers.GrpcHandler {
+func Initialize(db *bun.DB, logger *zap.Logger, grpcServer *grpc.Server) App {
 	todoRepository := adapters.NewTodoRepository(db)
-	service := application.NewServiceApplication(todoRepository)
-	grpcHandler := handlers.NewGrpcHandler(service, logger)
-	return grpcHandler
+	serviceApplication := application.NewServiceApplication(todoRepository)
+	todoServiceServer := handlers.NewGrpcHandler(grpcServer, serviceApplication, logger)
+	app := New(todoServiceServer)
+	return app
+}
+
+// wire.go:
+
+type App struct{}
+
+func New(s todov1.TodoServiceServer) App {
+	return App{}
 }
