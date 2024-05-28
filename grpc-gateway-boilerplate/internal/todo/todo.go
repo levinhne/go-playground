@@ -7,8 +7,8 @@ import (
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/handlers"
 )
 
-var Set = wire.NewSet(
-	adapters.TodoRepositorySet,
-	application.ServiceApplicationSet,
-	handlers.GrpcHandlerSet,
+var ProviderSet = wire.NewSet(
+	adapters.NewTodoRepository,
+	application.NewServiceApplication,
+	handlers.NewTodoHandler,
 )

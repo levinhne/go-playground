@@ -14,13 +14,14 @@ import (
 
 type App struct{}
 
-func New(s todov1.TodoServiceServer) App {
-	return App{}
+func New(server *grpc.Server, todoSrv todov1.TodoServiceServer) *App {
+	todov1.RegisterTodoServiceServer(server, todoSrv)
+	return &App{}
 }
 
-func Initialize(db *bun.DB, logger *zap.Logger, grpcServer *grpc.Server) App {
+func Initialize(db *bun.DB, logger *zap.Logger, grpcServer *grpc.Server) (*App, error) {
 	panic(wire.Build(
 		New,
-		todo.Set,
+		todo.ProviderSet,
 	))
 }

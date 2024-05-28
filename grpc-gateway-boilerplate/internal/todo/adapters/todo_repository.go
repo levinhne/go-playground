@@ -1,14 +1,11 @@
 package adapters
 
 import (
-	"github.com/google/wire"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/ports"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/domain"
 	"github.com/uptrace/bun"
 	"golang.org/x/net/context"
 )
-
-var TodoRepositorySet = wire.NewSet(NewTodoRepository)
 
 type TodoRepository struct {
 	db *bun.DB
