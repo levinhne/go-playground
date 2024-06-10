@@ -1,26 +1,39 @@
 package adapters
 
 import (
+	"fmt"
+	"sync"
+
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/ports"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/domain"
-	"github.com/uptrace/bun"
 	"golang.org/x/net/context"
 )
 
 type TodoRepository struct {
-	db *bun.DB
+	todos map[string]*domain.Todo
+	lock  *sync.RWMutex
 }
 
-func NewTodoRepository(db *bun.DB) ports.TodoRepository {
+func NewTodoRepository() ports.TodoRepository {
 	return TodoRepository{
-		db: db,
+		todos: map[string]*domain.Todo{},
+		lock:  &sync.RWMutex{},
 	}
 }
 
-func (r TodoRepository) GetTodoByID(ctx context.Context, Id string) (*domain.Todo, error) {
-	return &domain.Todo{}, nil
+func (r TodoRepository) GetTodoByID(_ context.Context, ID string) (*domain.Todo, error) {
+	r.lock.RLock()
+	todo, ok := r.todos[ID]
+	if !ok {
+		return nil, fmt.Errorf("todo not found")
+	}
+	defer r.lock.RUnlock()
+	return todo, nil
 }
 
-func (r TodoRepository) CreateTodo(ctx context.Context, todo *domain.Todo) error {
+func (r TodoRepository) CreateTodo(_ context.Context, todo *domain.Todo) error {
+	r.lock.Lock()
+	r.todos[todo.ID] = todo
+	defer r.lock.Unlock()
 	return nil
 }
