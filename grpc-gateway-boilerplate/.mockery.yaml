@@ -1,0 +1,13 @@
+quiet: False
+keeptree: True
+disable-version-string: True
+with-expecter: True
+mockname: "{{.InterfaceName}}"
+filename: "{{.MockName}}.go"
+packages:
+  github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application/ports:
+    config:
+      dir: "./internal/todo/application/{{.PackageName}}"
+    interfaces:
+      TodoRepository:
+         config:

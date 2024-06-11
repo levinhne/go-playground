@@ -4,18 +4,18 @@ import (
 	"context"
 
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo/application"
+	"github.com/levinhne/grpc-gateway-boilerplate/pkg/logger"
 	todov1 "github.com/levinhne/grpc-gateway-boilerplate/proto/todo/v1"
-	"go.uber.org/zap"
 )
 
 type TodoHandler struct {
 	app    application.ServiceApplication
-	logger *zap.Logger
+	logger logger.LoggerAdapter
 }
 
 func NewTodoHandler(
 	app application.ServiceApplication,
-	logger *zap.Logger,
+	logger logger.LoggerAdapter,
 ) todov1.TodoServiceServer {
 	return &TodoHandler{
 		app:    app,

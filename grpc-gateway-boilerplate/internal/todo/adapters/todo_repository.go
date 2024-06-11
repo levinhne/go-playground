@@ -31,6 +31,14 @@ func (r TodoRepository) GetTodoByID(_ context.Context, ID string) (*domain.Todo,
 	return todo, nil
 }
 
+func (r TodoRepository) ListTodos(_ context.Context) ([]*domain.Todo, error) {
+	var todos = make([]*domain.Todo, 0)
+	for _, todo := range r.todos {
+		todos = append(todos, todo)
+	}
+	return todos, nil
+}
+
 func (r TodoRepository) CreateTodo(_ context.Context, todo *domain.Todo) error {
 	r.lock.Lock()
 	r.todos[todo.ID] = todo
