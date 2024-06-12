@@ -7,7 +7,6 @@ import (
 	"github.com/google/wire"
 	"github.com/levinhne/grpc-gateway-boilerplate/internal/todo"
 	todov1 "github.com/levinhne/grpc-gateway-boilerplate/proto/todo/v1"
-	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
 
@@ -18,7 +17,7 @@ func New(server *grpc.Server, todoSrv todov1.TodoServiceServer) *App {
 	return &App{}
 }
 
-func Initialize(logger *zap.Logger, grpcServer *grpc.Server) (*App, error) {
+func Initialize(server *grpc.Server) (*App, error) {
 	panic(wire.Build(
 		New,
 		todo.ProviderSet,

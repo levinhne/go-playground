@@ -35,6 +35,616 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on GetTodoRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *GetTodoRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTodoRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in GetTodoRequestMultiError,
+// or nil if none found.
+func (m *GetTodoRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTodoRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetTodoRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTodoRequestMultiError is an error wrapping multiple validation errors
+// returned by GetTodoRequest.ValidateAll() if the designated constraints
+// aren't met.
+type GetTodoRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTodoRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTodoRequestMultiError) AllErrors() []error { return m }
+
+// GetTodoRequestValidationError is the validation error returned by
+// GetTodoRequest.Validate if the designated constraints aren't met.
+type GetTodoRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTodoRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTodoRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTodoRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTodoRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTodoRequestValidationError) ErrorName() string { return "GetTodoRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e GetTodoRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTodoRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTodoRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTodoRequestValidationError{}
+
+// Validate checks the field values on GetTodoResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetTodoResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTodoResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetTodoResponseMultiError, or nil if none found.
+func (m *GetTodoResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTodoResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetTodoResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTodoResponseMultiError is an error wrapping multiple validation errors
+// returned by GetTodoResponse.ValidateAll() if the designated constraints
+// aren't met.
+type GetTodoResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTodoResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTodoResponseMultiError) AllErrors() []error { return m }
+
+// GetTodoResponseValidationError is the validation error returned by
+// GetTodoResponse.Validate if the designated constraints aren't met.
+type GetTodoResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTodoResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTodoResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTodoResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTodoResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTodoResponseValidationError) ErrorName() string { return "GetTodoResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e GetTodoResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTodoResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTodoResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTodoResponseValidationError{}
+
+// Validate checks the field values on ListTodosRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ListTodosRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTodosRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTodosRequestMultiError, or nil if none found.
+func (m *ListTodosRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTodosRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return ListTodosRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTodosRequestMultiError is an error wrapping multiple validation errors
+// returned by ListTodosRequest.ValidateAll() if the designated constraints
+// aren't met.
+type ListTodosRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTodosRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTodosRequestMultiError) AllErrors() []error { return m }
+
+// ListTodosRequestValidationError is the validation error returned by
+// ListTodosRequest.Validate if the designated constraints aren't met.
+type ListTodosRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTodosRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTodosRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTodosRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTodosRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTodosRequestValidationError) ErrorName() string { return "ListTodosRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ListTodosRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTodosRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTodosRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTodosRequestValidationError{}
+
+// Validate checks the field values on ListTodosResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ListTodosResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTodosResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTodosResponseMultiError, or nil if none found.
+func (m *ListTodosResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTodosResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return ListTodosResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTodosResponseMultiError is an error wrapping multiple validation errors
+// returned by ListTodosResponse.ValidateAll() if the designated constraints
+// aren't met.
+type ListTodosResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTodosResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTodosResponseMultiError) AllErrors() []error { return m }
+
+// ListTodosResponseValidationError is the validation error returned by
+// ListTodosResponse.Validate if the designated constraints aren't met.
+type ListTodosResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTodosResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTodosResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTodosResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTodosResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTodosResponseValidationError) ErrorName() string {
+	return "ListTodosResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListTodosResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTodosResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTodosResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTodosResponseValidationError{}
+
+// Validate checks the field values on ListTodoTagsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ListTodoTagsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTodoTagsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTodoTagsRequestMultiError, or nil if none found.
+func (m *ListTodoTagsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTodoTagsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Parent
+
+	if len(errors) > 0 {
+		return ListTodoTagsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTodoTagsRequestMultiError is an error wrapping multiple validation
+// errors returned by ListTodoTagsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type ListTodoTagsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTodoTagsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTodoTagsRequestMultiError) AllErrors() []error { return m }
+
+// ListTodoTagsRequestValidationError is the validation error returned by
+// ListTodoTagsRequest.Validate if the designated constraints aren't met.
+type ListTodoTagsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTodoTagsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTodoTagsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTodoTagsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTodoTagsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTodoTagsRequestValidationError) ErrorName() string {
+	return "ListTodoTagsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListTodoTagsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTodoTagsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTodoTagsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTodoTagsRequestValidationError{}
+
+// Validate checks the field values on ListTodoTagsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ListTodoTagsResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ListTodoTagsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ListTodoTagsResponseMultiError, or nil if none found.
+func (m *ListTodoTagsResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ListTodoTagsResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return ListTodoTagsResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ListTodoTagsResponseMultiError is an error wrapping multiple validation
+// errors returned by ListTodoTagsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type ListTodoTagsResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ListTodoTagsResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ListTodoTagsResponseMultiError) AllErrors() []error { return m }
+
+// ListTodoTagsResponseValidationError is the validation error returned by
+// ListTodoTagsResponse.Validate if the designated constraints aren't met.
+type ListTodoTagsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ListTodoTagsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ListTodoTagsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ListTodoTagsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ListTodoTagsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ListTodoTagsResponseValidationError) ErrorName() string {
+	return "ListTodoTagsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ListTodoTagsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListTodoTagsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ListTodoTagsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ListTodoTagsResponseValidationError{}
+
 // Validate checks the field values on CreateTodoRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.

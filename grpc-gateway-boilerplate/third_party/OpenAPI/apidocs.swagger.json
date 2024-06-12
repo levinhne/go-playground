@@ -17,6 +17,26 @@
   ],
   "paths": {
     "/api/v1/todos": {
+      "get": {
+        "operationId": "TodoService_ListTodos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListTodosResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TodoService"
+        ]
+      },
       "post": {
         "operationId": "TodoService_CreateTodo",
         "responses": {
@@ -41,6 +61,68 @@
             "schema": {
               "$ref": "#/definitions/v1CreateTodoRequest"
             }
+          }
+        ],
+        "tags": [
+          "TodoService"
+        ]
+      }
+    },
+    "/api/v1/{name}": {
+      "get": {
+        "operationId": "TodoService_GetTodo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTodoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "todos/[^/]+"
+          }
+        ],
+        "tags": [
+          "TodoService"
+        ]
+      }
+    },
+    "/api/v1/{parent}/tags": {
+      "get": {
+        "operationId": "TodoService_ListTodoTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListTodoTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "parent",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "todos/[^/]+"
           }
         ],
         "tags": [
@@ -82,6 +164,15 @@
       "type": "object"
     },
     "v1CreateTodoResponse": {
+      "type": "object"
+    },
+    "v1GetTodoResponse": {
+      "type": "object"
+    },
+    "v1ListTodoTagsResponse": {
+      "type": "object"
+    },
+    "v1ListTodosResponse": {
       "type": "object"
     }
   }

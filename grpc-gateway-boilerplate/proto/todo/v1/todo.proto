@@ -1,8 +1,10 @@
 
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
+import "google/api/client.proto";
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/levinhne/grpc-gateway-boilerplate/todo/v1;todopb_v1";
@@ -10,19 +12,49 @@ option go_package = "github.com/levinhne/grpc-gateway-boilerplate/todo/v1;todopb
 package todo.v1;
 
 service TodoService {
+    rpc GetTodo(GetTodoRequest) returns (GetTodoResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/{name=todos/*}"
+        };
+        option (google.api.method_signature) = "name";
+    }
+
+    rpc ListTodos(ListTodosRequest) returns (ListTodosResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/todos"
+        };
+    }
+
     rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {
         option (google.api.http) = {
             post: "/api/v1/todos"
             body: "*"
-
+        };
+    }
+    
+    rpc ListTodoTags(ListTodoTagsRequest) returns (ListTodoTagsResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/{parent=todos/*}/tags"
         };
     }
 }
 
-message CreateTodoRequest {
-
+message GetTodoRequest {
+    string name = 1;
 }
 
-message CreateTodoResponse {
+message GetTodoResponse {}
 
+message ListTodosRequest {}
+
+message ListTodosResponse {}
+
+message ListTodoTagsRequest {
+    string parent = 1;
 }
+
+message ListTodoTagsResponse {}
+
+message CreateTodoRequest {}
+
+message CreateTodoResponse {}
